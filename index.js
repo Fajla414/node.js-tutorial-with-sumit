@@ -1,20 +1,15 @@
-// app.param
+// app.path()
 const express = require("express");
 const app = express();
+const blog = express();
+const blogAdmin = express();
 
-app.param("id", (req, res, next, id) => {
-  const user = {
-    userId: id,
-    name: "Bangladesh",
-  };
-  req.userDetails = user;
-  next();
-});
+app.use("/blog", blog);
+blog.use("/admin", blogAdmin);
 
-app.get("/user/:id", (req, res) => {
-  console.log(req.userDetails); // output the user details
-  res.send("welcome to application home");
-});
+console.log(app.path()); // ''
+console.log(blog.path()); // '/blog'
+console.log(blogAdmin.path()); // '/blog/admin'
 
 app.listen(3000, () => {
   console.log("listening on port 3000");
