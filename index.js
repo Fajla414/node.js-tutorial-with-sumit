@@ -1,9 +1,11 @@
-// app.methods
+// app.disable(name) and app.enable(name)
 const express = require("express");
 const app = express();
 
-app.all("/", (req, res) => {
-  // app.all access by all type of methods
+app.enable("case sensitive routing"); // enable case sensitive routing
+app.disable("case sensitive routing"); // disable case sensitive routing
+
+app.all("/about", (req, res) => {
   res.send("Welcome to application home");
 });
 
