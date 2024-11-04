@@ -1,15 +1,30 @@
-// app.path()
+// app.route()
 const express = require("express");
 const app = express();
-const blog = express();
-const blogAdmin = express();
 
-app.use("/blog", blog);
-blog.use("/admin", blogAdmin);
+// app.get("/about/mission", (req, res) => {
+//   res.send("Welcome to application home");
+// });
+// app.post("/about/mission", (req, res) => {
+//   res.send("Welcome to application home post");
+// });
+// app.put("/about/mission", (req, res) => {
+//   res.send("Welcome to application home put");
+// });
 
-console.log(app.path()); // ''
-console.log(blog.path()); // '/blog'
-console.log(blogAdmin.path()); // '/blog/admin'
+// Allternate.get("/about/mission");
+
+app
+  .route("/about/mission")
+  .get((req, res) => {
+    res.send("Welcome to application home");
+  })
+  .post((req, res) => {
+    res.send("Welcome to application home post");
+  })
+  .put((req, res) => {
+    res.send("Welcome to application home put");
+  });
 
 app.listen(3000, () => {
   console.log("listening on port 3000");
