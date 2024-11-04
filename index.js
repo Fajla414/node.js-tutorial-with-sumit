@@ -1,13 +1,20 @@
-// app.get(name)
+// app.param
 const express = require("express");
 const app = express();
 
-app.get("title");
-// => undefined
+app.param("id", (req, res, next, id) => {
+  const user = {
+    userId: id,
+    name: "Bangladesh",
+  };
+  req.userDetails = user;
+  next();
+});
 
-app.set("title", "My Site");
-app.get("title");
-// => "My Site"
+app.get("/user/:id", (req, res) => {
+  console.log(req.userDetails); // output the user details
+  res.send("welcome to application home");
+});
 
 app.listen(3000, () => {
   console.log("listening on port 3000");
