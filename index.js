@@ -1,13 +1,13 @@
-// app.disable(name) and app.enable(name)
+// app.get(name)
 const express = require("express");
 const app = express();
 
-app.enable("case sensitive routing"); // enable case sensitive routing
-app.disable("case sensitive routing"); // disable case sensitive routing
+app.get("title");
+// => undefined
 
-app.all("/about", (req, res) => {
-  res.send("Welcome to application home");
-});
+app.set("title", "My Site");
+app.get("title");
+// => "My Site"
 
 app.listen(3000, () => {
   console.log("listening on port 3000");
