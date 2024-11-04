@@ -1,11 +1,11 @@
-// app.mountpath
+// app.mount
 const express = require("express");
 const app = express();
 const admin = express();
 
-admin.get("/dashboard/hello", (req, res) => {
-  console.log(admin.mountpath); // output = /admin
-  res.send("Welcome to admin dashboard");
+admin.on("mount", (parent) => {
+  console.log("Admin Mounted");
+  console.log(parent); // refers to the parent app
 });
 
 app.get("/", (req, res) => {
