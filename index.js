@@ -1,10 +1,16 @@
-// app.render()
+// req.baseUrl
 const express = require("express");
 const app = express();
-app.set("view engine", "ejs"); // first install the ejs engine
+const adminRoute = express.Router();
+adminRoute.get("/dashboard", (req, res) => {
+  console.log(req.baseUrl); // console => /admin
+  res.send("we are in admin dashboard");
+});
 
-app.get("/about", (req, res) => {
-  res.render("pages/about"); // browser output => what's on the  /views/pages/about page
+app.use("/admin", adminRoute);
+app.get("/user/:id", (req, res) => {
+  // console.log(req.baseUrl); // console is empty
+  res.send("Hello World");
 });
 
 app.listen(3000, () => {
